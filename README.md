@@ -9,7 +9,7 @@ Email: ifrad.hossain04@gmail.com | LinkedIn: [linkedin.com/in/ihos25](https://ww
 
 ## About Me
 
-I am a second-semester Computer Programming student (T186) at George Brown College with a strong interest in AI engineering, web development, and automation. I bring hands-on experience from both industry jobs and technical certifications, and I enjoy building efficient, practical tools that solve real-world problems.
+I am a Computer Science student at George Brown College with a strong interest in AI engineering, web development, and automation. I bring hands-on experience from both industry jobs and technical certifications, and I enjoy building efficient, practical tools that solve real-world problems.
 
 I’m currently working on projects involving automation, front-end development, and AI applications. I have a growing foundation in object-oriented programming, scripting, system design, and user-centered development.
 
