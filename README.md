@@ -4,6 +4,9 @@ Computer Programming Student at George Brown College
 Based in Toronto, Canada  
 Email: ifrad.hossain04@gmail.com | LinkedIn: [linkedin.com/in/ihos25](https://www.linkedin.com/in/ihos25/)  
 
+## Check out my portfolio!
+[Click here](https://ifradhossainprojects.edgeone.app)
+
 
 ---
 
