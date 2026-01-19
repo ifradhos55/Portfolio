@@ -50,12 +50,10 @@ function useActiveSection(sectionIds) {
 function Icon({ kind }) {
     const map = {
         code: "⟡",
-        bolt: "⚡",
         shield: "⬡",
         chart: "▦",
         link: "↗",
         eye: "◉",
-        mail: "✉",
         github: "⌂",
         li: "in",
     };
@@ -423,7 +421,7 @@ function App() {
 
                             <div className="projectCard reveal">
                                 <h3>Profiles</h3>
-                                <p>Keep it simple: GitHub for code, LinkedIn for professional context.</p>
+                                <p>Check out some of my work, or connect with me through:</p>
                                 <div className="projectLinks">
                                     <a className="linkBtn primary" href="https://github.com/ifradhos55" target="_blank" rel="noreferrer">
                                         <Icon kind="github" /> github.com/ifradhos55
@@ -437,7 +435,7 @@ function App() {
 
                         <div className="footer reveal">
                             <hr className="hr" />
-                            © {new Date().getFullYear()} Ifrad Hossain • Blue/Red theme • React (UMD)
+                            © {new Date().getFullYear()} Ifrad Hossain
                         </div>
                     </div>
                 </section>
