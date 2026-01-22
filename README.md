@@ -22,8 +22,6 @@ I’m currently working on projects involving automation, front-end development,
 
 - IBM AI Engineering Professional Certificate  
 - Google UX Design Professional Certificate  
-- Google Prompt Engineering for AI Certificate  
-- Google IT Support Professional Certificate  
 
 ---
 
