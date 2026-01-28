@@ -138,6 +138,15 @@ function App() {
             primaryTag: "Python",
             links: [{ label: "Details", type: "modal" }]
         },
+        {
+            title: "Cosmic Fusion",
+            year: "2026",
+            highlight: "Interactive 3D Solar System & Galaxy Simulation.",
+            details: "A high-performance WebGL simulation featuring real-time orbital physics, procedural texture generation via Canvas API, and a massive 100,000-particle spiral galaxy view.",
+            tags: ["Three.js", "WebGL", "JavaScript"],
+            primaryTag: "Three.js",
+            links: [{ label: "View Details", type: "modal" }]
+        }
     ]), []);
 
     const allTags = useMemo(() => {
