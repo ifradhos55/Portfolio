@@ -205,23 +205,24 @@ function App() {
                             </div>
 
                             <div className="reveal" style={{ transitionDelay: '100ms' }}>
-                                <div className="metricGrid">
-                                    <div className="metric">
-                                        <h3>Dashboards</h3>
-                                        <p>React State & UX</p>
-                                    </div>
-                                    <div className="metric">
-                                        <h3>Backends</h3>
-                                        <p>Java & Python Logic</p>
-                                    </div>
-                                    <div className="metric">
-                                        <h3>Systems</h3>
-                                        <p>CRUD & Workflows</p>
+                                <div className="reveal" style={{ transitionDelay: '100ms' }}>
+                                    <div className="metricGrid">
+                                        <div className="metric">
+                                            <h3>Dashboards</h3>
+                                            <p>React State & UX</p>
+                                        </div>
+                                        <div className="metric">
+                                            <h3>Backends</h3>
+                                            <p>Java & Python Logic</p>
+                                        </div>
+                                        <div className="metric">
+                                            <h3>Systems</h3>
+                                            <p>CRUD & Workflows</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </section>
 
                 <section id="projects" className="section">
@@ -234,8 +235,10 @@ function App() {
                             <div className="filters">
                                 <input className="input" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search..." />
                                 <select className="select" value={tag} onChange={(e) => setTag(e.target.value)}>
-                                    {allTags.map(t => <option key={t} value={t}>{t}</option>)}
-                                </select>
+                                    <input className="input" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search..." />
+                                    <select className="select" value={tag} onChange={(e) => setTag(e.target.value)}>
+                                        {allTags.map(t => <option key={t} value={t}>{t}</option>)}
+                                    </select>
                             </div>
                         </div>
 
@@ -251,16 +254,19 @@ function App() {
                                         </div>
                                     </div>
                                     <div className="badges" style={{ marginTop: 0, marginBottom: 12 }}>
-                                        {p.tags.map(t => <span key={t} className="badge">{t}</span>)}
-                                    </div>
-                                    <p>{p.highlight}</p>
-                                    <div className="projectLinks">
-                                        {p.links.map((l, idx) => (
-                                            l.type === "link"
-                                                ? <a key={idx} className="linkBtn primary" href={l.href} target="_blank"><Icon kind="link" /> {l.label}</a>
-                                                : <button key={idx} className="linkBtn" onClick={() => setSelected(p)}><Icon kind="eye" /> {l.label}</button>
-                                        ))}
-                                    </div>
+                                        <div className="badges" style={{ marginTop: 0, marginBottom: 12 }}>
+                                            {p.tags.map(t => <span key={t} className="badge">{t}</span>)}
+                                        </div>
+                                        <p>{p.highlight}</p>
+                                        <div className="projectLinks">
+                                            {p.links.map((l, idx) => (
+                                                l.type === "link"
+                                                    ? <a key={idx} className="linkBtn primary" href={l.href} target="_blank"><Icon kind="link" /> {l.label}</a>
+                                                    : <button key={idx} className="linkBtn" onClick={() => setSelected(p)}><Icon kind="eye" /> {l.label}</button>
+                                                        ? <a key={idx} className="linkBtn primary" href={l.href} target="_blank"><Icon kind="link" /> {l.label}</a>
+                                                        : <button key={idx} className="linkBtn" onClick={() => setSelected(p)}><Icon kind="eye" /> {l.label}</button>
+                                            ))}
+                                        </div>
                                 </article>
                             ))}
                         </div>
@@ -305,37 +311,47 @@ function App() {
                                 Available for internships and freelance projects.
                             </p>
                             <div style={{ display: 'flex', justifyContent: 'center', gap: 10 }}>
-                                <a className="btn btnPrimary" href="mailto:ifrad.hossain04@gmail.com">ifrad.hossain04@gmail.com</a>
-                                <button className="btn" onClick={copyEmail}>Copy</button>
+                                <div className="projectCard reveal" style={{ textAlign: 'center', padding: '60px 20px' }}>
+                                    <h3 style={{ fontSize: 24, marginBottom: 10 }}>Ready to build.</h3>
+                                    <p style={{ maxWidth: 400, margin: "0 auto 30px" }}>
+                                        Available for internships and freelance projects.
+                                    </p>
+                                    <div style={{ display: 'flex', justifyContent: 'center', gap: 10 }}>
+                                        <a className="btn btnPrimary" href="mailto:ifrad.hossain04@gmail.com">ifrad.hossain04@gmail.com</a>
+                                        <button className="btn" onClick={copyEmail}>Copy</button>
+                                    </div>
+                                </div>
+                                <div className="footer">
+                                    <hr className="hr" />
+                                    <hr className="hr" />
+                                    © {new Date().getFullYear()} Ifrad Hossain
+                                </div>
                             </div>
-                        </div>
-                        <div className="footer">
-                            <hr className="hr" />
-                            © {new Date().getFullYear()} Ifrad Hossain
-                        </div>
-                    </div>
-                </section>
-            </main>
+                        </section>
+                    </main>
 
-            {selected && (
-                <div className="modalOverlay" onClick={() => setSelected(null)}>
-                    <div className="modal reveal on" onClick={(e) => e.stopPropagation()}>
-                        <div className="modalTop">
-                            <h3>{selected.title}</h3>
-                            <button className="modalClose" onClick={() => setSelected(null)}>✕</button>
-                        </div>
-                        <div className="modalBody">
-                            <p>{selected.details}</p>
-                            <div className="badges" style={{ marginTop: 20 }}>
-                                {selected.tags.map(t => <span key={t} className="badge">{t}</span>)}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    {selected && (
+                        <div className="modalOverlay" onClick={() => setSelected(null)}>
+                            <div className="modal reveal on" onClick={(e) => e.stopPropagation()}>
+                                <div className="modal reveal on" onClick={(e) => e.stopPropagation()}>
+                                    <div className="modalTop">
+                                        <h3>{selected.title}</h3>
+                                        <button className="modalClose" onClick={() => setSelected(null)}>✕</button>
+                                    </div>
+                                    <div className="modalBody">
+                                        <p>{selected.details}</p>
+                                        <div className="badges" style={{ marginTop: 20 }}>
+                                            <div className="badges" style={{ marginTop: 20 }}>
+                                                {selected.tags.map(t => <span key={t} className="badge">{t}</span>)}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
             )}
-        </>
-    );
+                            </>
+                            );
 }
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+                            const root = ReactDOM.createRoot(document.getElementById("root"));
+                            root.render(<App />);
+                            root.render(<App />);
