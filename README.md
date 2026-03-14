@@ -2,7 +2,7 @@
 
 Full Stack Developer focused on structure and performance. I build dashboards, automation tools, and interactive web-applications for versatile purposes.
 
-**[ifradhossain.vercel.app](https://ifradhossain.vercel.app)**
+**[Learn More About Me](https://ifradhossain.vercel.app)**
 
 ---
 
