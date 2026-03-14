@@ -1,75 +1,56 @@
-# Ifrad Hossain
+# IFRAD ISTIAQUE HOSSAIN
 
-Computer Programming Student at George Brown College  
-Based in Toronto, Canada  
-Email: ifrad.hossain04@gmail.com | LinkedIn: [linkedin.com/in/ihos25](https://www.linkedin.com/in/ihos25/)  
+Full Stack Developer focused on structure and performance. I build dashboards, automation tools, and interactive web-applications for versatile purposes.
 
----
-
-## About Me
-
-I am a Computer Science student at George Brown College with a strong interest in AI engineering, web development, and automation. I bring hands-on experience from both industry jobs and technical certifications, and I enjoy building efficient, practical tools that solve real-world problems.
-
-I’m currently working on projects involving automation, front-end development, and AI applications. I have a growing foundation in object-oriented programming, scripting, system design, and user-centered development.
+**[ifradhossain.vercel.app](https://ifradhossain.vercel.app)**
 
 ---
 
-## Certifications
+### About
 
-- IBM AI Engineering Professional Certificate  
-- Google UX Design Professional Certificate  
-
----
-
-## Technical Skills
-
-**Languages**  
-- Python, Java, JavaScript, C, C++, HTML, CSS, SQL, Bash  
-
-**Tools & Frameworks**  
-- Git, GitHub, Figma, React (basic), Node.js (beginner), Jupyter Notebooks, VS Code  
-
-**Databases**  
-- MySQL, SQLite  
-
-**Concepts**  
-- Object-Oriented Programming  
-- RESTful APIs  
-- Prompt Engineering  
-- Responsive Web Design  
-- Basic Networking and OS Troubleshooting  
-
-**Operating Systems**  
-- macOS, Linux (Terminal), Windows  
+Computer Programming student at George Brown Polytechnic, based in Toronto, ON, Canada. I work across the full stack, from frontend interfaces to backend systems and data pipelines. My focus is on building things that are reliable, clean, and production-ready.
 
 ---
 
-## Projects
+### What I Build
 
-### Rickby – AI-Powered Auto Dialer Bot (In Progress)
-A Python-based AI agent that auto-dials phone numbers, detects voicemail, and leaves custom scripts before moving to the next number. Designed for outreach automation and CRM integration.
+**Full-Stack Web Apps** React, Next.js, ASP.NET Core, Django. End-to-end development from UI to deployment.
 
-- Features: auto-dialing logic, voicemail detection, Bash control scripts, cloud telephony integration (SignalWire/Twilio)
+**Backend & Database Engineering** Node.js, Express.js, PostgreSQL, SQL Server. Scalable APIs and data layers.
 
-### Personal Portfolio Website (Redesign in Progress)
-A fully responsive and modern portfolio website built using HTML, CSS, and Tailwind. Includes dark mode, animations, and project showcase integration.
+**Desktop & Enterprise Software** Java, JavaFX, Spring Boot, C#. Production-grade applications following OOP best practices.
 
-- Focus: accessibility, clean UI/UX, and minimal loading time
+**AI & Data Pipelines** TensorFlow, PyTorch, MediaPipe. Model training and integration for real-world use cases.
 
 ---
 
-## Education
+### Projects
 
-**Diploma in Computer Programming**  
-George Brown College, Toronto  
-Expected Graduation: April 2026  
-Current GPA: 3.59 / 4.00  
+**Markain** Integrated institutional Business Management System. Dashboard, Training Hub, ATS, Collaboration Hub, PDF Toolbox, and Careers Portal. Built with ASP.NET Core MVC, Entity Framework Core, PostgreSQL, and Tailwind CSS.
+[Source Code](https://github.com/ifradhos55/Markain)
 
-Relevant Coursework:  
-- Object-Oriented Programming  
-- Web Development (HTML, CSS, JavaScript)  
-- Programming with Python and Bash  
-- Database Management (SQL)  
-- Operating Systems & Network Architecture  
+**Ozark (LMS)** Enterprise-grade Learning Management System with student hub, assignment submissions, and grade tracking. ASP.NET, C#, PostgreSQL, Azure.
+[Visit Ozark](https://ozarklms-crakb2dqdqb4crfn.canadacentral-01.azurewebsites.net) | [Source Code](https://github.com/Luistello87/OzarkLMS/tree/master/OzarkLMS)
+
+**Cosmic Fusion** Interactive 3D Solar System and Galaxy Simulation. Real-time orbital physics, procedural textures, and a 100,000-particle spiral galaxy view. Three.js, WebGL.
+[Visit Cosmic Fusion](https://cosmicfusionsimulator-six.vercel.app) | [Source Code](https://github.com/ifradhos55/Cosmic-Fusion)
+
+**Air Cursor** Touchless interaction using hand gestures. Tracks real-time hand movements to control the system cursor with pinch gestures for UI interaction. Python, MediaPipe.
+[Source Code](https://github.com/ifradhos55/AirCursor)
 
 ---
+
+### Certifications
+
+**IBM AI Engineering** Python, ML workflows, and model training fundamentals.
+
+**Google UX Design** Wireframing, prototyping, and user research logic.
+
+**Google IT Support** Networking basics and system troubleshooting.
+
+---
+
+### Connect
+
+ifrad.hossain04@gmail.com
+[GitHub](https://github.com/ifradhos55) | [LinkedIn](https://linkedin.com/in/ihos25)

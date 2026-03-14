@@ -78,12 +78,52 @@ button {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(5, 5, 5, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    /* Safari support */
+    background: transparent;
     border-bottom: 1px solid var(--border);
-    transition: background 0.3s ease;
+    overflow: hidden;
+}
+
+.topbar-art {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.topbar-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.topbar > .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Circuit trace animations */
+.circuit-trace {
+    opacity: 0;
+}
+
+.t1 { animation: tracePulse 5s ease-in-out infinite; }
+.t2 { animation: tracePulse 5s ease-in-out 1s infinite; }
+.t3 { animation: tracePulse 5s ease-in-out 2s infinite; }
+.t4 { animation: tracePulse 5s ease-in-out 3s infinite; }
+.t5 { animation: tracePulse 5s ease-in-out 4s infinite; }
+
+@keyframes tracePulse {
+    0%, 100% { opacity: 0; }
+    40%, 60% { opacity: 0.7; }
+}
+
+.circuit-name {
+    animation: namePulse 8s ease-in-out infinite;
+}
+
+@keyframes namePulse {
+    0%, 100% { opacity: 0.05; }
+    50% { opacity: 0.12; }
 }
 
 .nav {
@@ -207,7 +247,7 @@ button {
     font-weight: 700;
     line-height: 1.05;
     letter-spacing: -0.03em;
-    background: linear-gradient(to bottom right, #fff, #888);
+    background: linear-gradient(to bottom right, #fff, #bbb);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -254,7 +294,17 @@ button {
     padding: 16px;
     border-left: 2px solid var(--border);
     background: linear-gradient(90deg, var(--bg-panel) 0%, transparent 100%);
-    transition: border-color 0.3s;
+    transition: all 0.3s;
+}
+
+.metricGrid h4 {
+    grid-column: 1 / -1;
+    margin: 10px 0 20px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--orange);
+    opacity: 0.8;
 }
 
 .metric:hover {
@@ -521,6 +571,68 @@ button {
     transform: translateY(0);
 }
 
+/* --- Resume Embed --- */
+.resumeSection {
+    margin-top: 30px;
+}
+
+.resumeHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.resumeTitle {
+    margin: 0 0 6px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.resumeDesc {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 14px;
+    max-width: 48ch;
+    line-height: 1.5;
+}
+
+.resumeEmbed {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+    background: var(--bg-panel);
+    transition: border-color 0.3s var(--ease);
+}
+
+.resumeEmbed::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--orange), transparent);
+    z-index: 1;
+}
+
+.resumeEmbed:hover {
+    border-color: var(--orange);
+}
+
+.resumeFrame {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 8.5 / 11;
+    max-height: 90vh;
+    border: none;
+    display: block;
+}
+
 .footer {
     text-align: center;
     padding: 40px 0;
@@ -573,13 +685,51 @@ button {
         display: none;
     }
 
+    .hero {
+        padding: 60px 0 40px;
+    }
+
     .heroGrid {
         grid-template-columns: 1fr;
         gap: 30px;
     }
 
     .headline {
-        font-size: 42px;
+        font-size: clamp(32px, 10vw, 48px);
+        line-height: 1.1;
+    }
+
+    .heroActions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .heroActions .btn {
+        width: 100%;
+    }
+
+    .heroActions .btn:last-child {
+        grid-column: span 2;
+    }
+
+    .metricGrid {
+        gap: 16px;
+        grid-template-columns: 1fr;
+    }
+
+    .metric {
+        padding: 20px;
+        background: var(--bg-panel);
+        border-left: none;
+        border-top: 1px solid var(--border);
+        border-radius: var(--radius);
+    }
+    
+    .metricGrid h4 {
+        text-align: center;
+        margin-bottom: 10px;
     }
 
     .grid2,
@@ -597,7 +747,51 @@ button {
         width: 100%;
     }
 
-    .input {
-        flex-grow: 1;
+    .filters .input {
+        width: 100%;
+    }
+
+    .projectLinks {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 8px;
+    }
+
+    .projectLinks .linkBtn {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .projectCard {
+        padding: 20px;
+    }
+
+    .modal {
+        max-height: 85vh;
+        width: 95vw;
+    }
+
+    .modalBody {
+        padding: 20px;
+    }
+
+    /* Contact section button spacing */
+    #resume .projectCard div {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #resume .projectCard .btn {
+        width: 100%;
+    }
+
+    .resumeHeader {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .resumeHeader .btn {
+        width: 100%;
+        justify-content: center;
     }
 }
