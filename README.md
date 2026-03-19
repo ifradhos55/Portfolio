@@ -1,56 +1,75 @@
 # IFRAD ISTIAQUE HOSSAIN
+**Full Stack Developer**
 
-Full Stack Developer focused on structure and performance. I build dashboards, automation tools, and interactive web-applications for versatile purposes.
-
-**[Learn More About Me](https://ifradhossain.vercel.app)**
-
----
-
-### About
-
-Computer Programming student at George Brown Polytechnic, based in Toronto, ON, Canada. I work across the full stack, from frontend interfaces to backend systems and data pipelines. My focus is on building things that are reliable, clean, and production-ready.
+Toronto, ON | [ifrad.hossain04@gmail.com](mailto:ifrad.hossain04@gmail.com)
+[GitHub](https://github.com/ifradhos55) | [LinkedIn](https://linkedin.com/in/ihos25) | [Portfolio](https://ifradhossain.vercel.app)
 
 ---
 
-### What I Build
-
-**Full-Stack Web Apps** React, Next.js, ASP.NET Core, Django. End-to-end development from UI to deployment.
-
-**Backend & Database Engineering** Node.js, Express.js, PostgreSQL, SQL Server. Scalable APIs and data layers.
-
-**Desktop & Enterprise Software** Java, JavaFX, Spring Boot, C#. Production-grade applications following OOP best practices.
-
-**AI & Data Pipelines** TensorFlow, PyTorch, MediaPipe. Model training and integration for real-world use cases.
+### PROFESSIONAL SUMMARY
+Full stack software developer with hands-on experience building and maintaining web applications across modern frontend and backend stacks. Proficient in JavaScript, TypeScript, React, Java, C#, and Python with practical experience developing RESTful services using Spring Boot and ASP.NET MVC. Strong foundation in SQL and PostgreSQL, version control with Git, and Linux-based development workflows, complemented by DevOps practices including CI/CD to deliver reliable production-ready software.
 
 ---
 
-### Projects
-
-**Markain** Integrated institutional Business Management System. Dashboard, Training Hub, ATS, Collaboration Hub, PDF Toolbox, and Careers Portal. Built with ASP.NET Core MVC, Entity Framework Core, PostgreSQL, and Tailwind CSS.
-[Source Code](https://github.com/ifradhos55/Markain)
-
-**Ozark (LMS)** Enterprise-grade Learning Management System with student hub, assignment submissions, and grade tracking. ASP.NET, C#, PostgreSQL, Azure.
-[Visit Ozark](https://ozarklms-crakb2dqdqb4crfn.canadacentral-01.azurewebsites.net) | [Source Code](https://github.com/Luistello87/OzarkLMS/tree/master/OzarkLMS)
-
-**Cosmic Fusion** Interactive 3D Solar System and Galaxy Simulation. Real-time orbital physics, procedural textures, and a 100,000-particle spiral galaxy view. Three.js, WebGL.
-[Visit Cosmic Fusion](https://cosmicfusionsimulator-six.vercel.app) | [Source Code](https://github.com/ifradhos55/Cosmic-Fusion)
-
-**Air Cursor** Touchless interaction using hand gestures. Tracks real-time hand movements to control the system cursor with pinch gestures for UI interaction. Python, MediaPipe.
-[Source Code](https://github.com/ifradhos55/AirCursor)
+### TECHNICAL SKILLS
+- **Full Stack:** C#, .NET Core, ASP.NET MVC, Java, Spring Boot, Python
+- **Frontend:** JavaScript, TypeScript, React, HTML5, CSS3, Tailwind CSS, Three.js
+- **Database:** SQL, PostgreSQL, MySQL, Schema Design, Query Optimization
+- **Tools & Cloud:** Azure, AWS, Git, GitHub, CI/CD, Linux, Bash Scripting
 
 ---
 
-### Certifications
+### PROFESSIONAL EXPERIENCE
 
-**IBM AI Engineering** Python, ML workflows, and model training fundamentals.
+**Sky Group Residence** | *Coordinator* | Toronto, ON
+*Jan 2025 – Dec 2025*
+- Coordinated with prospective tenants, provided walkthroughs, and addressed inquiries.
+- Scheduled and conducted property showings and acted as a primary point of contact for operational needs.
 
-**Google UX Design** Wireframing, prototyping, and user research logic.
+**Cineplex VIP Theatres** | *VIP Cast Member* | Saskatoon, SK
+*Dec 2023 – Dec 2024*
+- Delivered high-quality customer service in a fast-paced VIP environment.
+- Performed opening/closing duties and maintained facility cleanliness and safety standards.
 
-**Google IT Support** Networking basics and system troubleshooting.
+**Access Research** | *Market Research Interviewer* | Saskatoon, SK
+*Nov 2022 – Jun 2023*
+- Conducted structured surveys for public and private organizations.
+- Followed strict data collection protocols to ensure accuracy and confidentiality.
 
 ---
 
-### Connect
+### PROJECTS
 
-ifrad.hossain04@gmail.com
-[GitHub](https://github.com/ifradhos55) | [LinkedIn](https://linkedin.com/in/ihos25)
+**Ozark LMS** | [Visit Ozark](https://ozarklms-crakb2dqdqb4crfn.canadacentral-01.azurewebsites.net) | [Source Code](https://github.com/Luistello87/OzarkLMS/tree/master/OzarkLMS)
+*ASP.NET Core, C#, PostgreSQL, Tailwind CSS, Azure, MVC*
+- Developed a role-based LMS with administrative and assessment workflows.
+- Implemented client-side data persistence and deployed to Azure.
+
+**Markain** | [Source Code](https://github.com/ifradhos55/Markain)
+*ASP.NET Core MVC, Entity Framework Core, C#, PostgreSQL, Tailwind CSS*
+- Built an Institutional Business Management System with a real-time operational dashboard, Training Hub, and Applicant Tracking System.
+
+**Cosmic Fusion** | [Visit Cosmic Fusion](https://cosmicfusionsimulator-six.vercel.app) | [Source Code](https://github.com/ifradhos55/Cosmic-Fusion)
+*Three.js, WebGL, JavaScript, Canvas API*
+- Built an interactive 3D Solar System simulation with procedural texture generation and optimized WebGL rendering for a 100,000-particle galaxy view.
+
+**Air Cursor** | [Source Code](https://github.com/ifradhos55/AirCursor)
+*Python, Computer Vision, MediaPipe*
+- Tracks real-time hand movements to control the system cursor with pinch gestures for UI interaction.
+
+---
+
+### EDUCATION
+
+**George Brown Polytechnic** | *Associates in Computer Programming* | Toronto, ON
+*Expected April 2026*
+- **Relevant Coursework:** Data Structures and Algorithms, Object-Oriented Software Development, Server-Side Web Development, Database Systems, Linux Systems, and Bash Scripting.
+
+---
+
+### CERTIFICATIONS
+
+- **IBM AI Engineering** | [Verify](https://www.coursera.org/account/accomplishments/professional-cert/certificate/GBRFNXIBZ8KG)
+- **IBM AI Enterprise Workflow** | [Verify](https://www.coursera.org/account/accomplishments/specialization/certificate/3IWCRQQCG8X3)
+- **Google UX Design** | [Verify](https://www.coursera.org/account/accomplishments/specialization/certificate/T4YGQEUTVT80)
+- **Google IT Support** | [Verify](https://www.coursera.org/account/accomplishments/professional-cert/certificate/EJBEM2OYWJER)
