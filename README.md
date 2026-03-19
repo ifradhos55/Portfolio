@@ -2,7 +2,7 @@
 **Full Stack Developer**
 
 Toronto, ON | [ifrad.hossain04@gmail.com](mailto:ifrad.hossain04@gmail.com)
-[GitHub](https://github.com/ifradhos55) | [LinkedIn](https://linkedin.com/in/ihos25) | [Portfolio](https://ifradhossain.vercel.app)
+[GitHub](https://github.com/ifradhos55) | [LinkedIn](https://linkedin.com/in/ihos25) | [Visit Portfolio](https://ifradhossain.vercel.app)
 
 ---
 
