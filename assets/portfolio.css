@@ -185,6 +185,10 @@ button {
     box-shadow: 0 0 20px rgba(255, 68, 0, 0.05);
 }
 
+.nav-resume-pill {
+    display: none; /* Hidden on desktop */
+}
+
 .ctaRow {
     display: flex;
     gap: 12px;
@@ -820,14 +824,32 @@ button {
     }
 
     .navlinks {
-        width: 100%;
+        width: calc(100% - 20px);
         overflow-x: auto;
         white-space: nowrap;
         justify-content: flex-start;
-        padding: 4px;
+        padding: 6px;
+        border-radius: 99px;
         scrollbar-width: none;
         -ms-overflow-style: none;
         -webkit-overflow-scrolling: touch;
+        margin: 0 auto 10px;
+        gap: 2px;
+    }
+
+    .navlinks .pill {
+        padding: 6px 12px;
+        font-size: 12px;
+        flex-shrink: 0;
+    }
+
+    .nav-resume-pill {
+        display: block;
+        background: var(--text-main);
+        color: #000 !important;
+        font-weight: 700;
+        margin-left: 8px; /* Standard gap instead of auto */
+        box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
     }
 
     .navlinks::-webkit-scrollbar {

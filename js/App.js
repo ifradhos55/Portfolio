@@ -210,7 +210,15 @@ window.Portfolio.App = function () {
                             <h1>IFRAD ISTIAQUE HOSSAIN</h1>
                         </div>
                         <nav className="navlinks">
-                            {SECTIONS.map(s => (
+                            {SECTIONS.filter(s => s !== "Contact").map(s => (
+                                <a key={s} className="pill" href={`#${s}`} onClick={(e) => { e.preventDefault(); scrollTo(s); }}>
+                                    {s.charAt(0).toUpperCase() + s.slice(1)}
+                                </a>
+                            ))}
+                            <a className="pill nav-resume-pill" href="#resumeTitle" onClick={(e) => { e.preventDefault(); scrollTo("resumeTitle"); }}>
+                                Resume
+                            </a>
+                            {SECTIONS.filter(s => s === "Contact").map(s => (
                                 <a key={s} className="pill" href={`#${s}`} onClick={(e) => { e.preventDefault(); scrollTo(s); }}>
                                     {s.charAt(0).toUpperCase() + s.slice(1)}
                                 </a>
@@ -379,8 +387,25 @@ window.Portfolio.App = function () {
                     </div>
                 </section>
 
-                <section id="Contact" className="section">
-                    <div className="container">
+                <div className="container">
+                    <div className="resumeSection">
+                        <div className="resumeHeader">
+                            <div>
+                                <h3 id="resumeTitle" className="resumeTitle">Resume</h3>
+                                <p className="resumeDesc">
+                                    A interactive look at my professional journey.
+                                </p>
+                            </div>
+                            <a className="btn btnPrimary" href="assets/resume/IfradHosResume.pdf" target="_blank" rel="noopener noreferrer" style={{ cursor: 'pointer' }}>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
+                                Download PDF
+                            </a>
+                        </div>
+                        
+                        <Resume data={window.Portfolio.RESUME_DATA} />
+                    </div>
+
+                    <section id="Contact" className="section" style={{ marginTop: 80 }}>
                         <div className="sectionHead">
                             <h2 className="sectionTitle">Reach Out Today!</h2>
                         </div>
@@ -394,26 +419,7 @@ window.Portfolio.App = function () {
                                 <button className="btn" onClick={copyEmail}>Copy</button>
                             </div>
                         </div>
-                    </div>
-                </section>
-
-                <div className="container">
-                    <div className="resumeSection">
-                        <div className="resumeHeader">
-                            <div>
-                                <h3 id="resumeTitle" className="resumeTitle">Resume</h3>
-                                <p className="resumeDesc">
-                                    A interactive look at my professional journey.
-                                </p>
-                            </div>
-                            <a className="btn btnPrimary" href="assets/resume/IfradHosResume.pdf" download>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
-                                Download PDF
-                            </a>
-                        </div>
-                        
-                        <Resume data={window.Portfolio.RESUME_DATA} />
-                    </div>
+                    </section>
 
                     <div className="footer">
                         <hr className="hr" />
