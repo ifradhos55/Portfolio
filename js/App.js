@@ -8,6 +8,7 @@ window.Portfolio.App = function () {
     const useRevealOnScroll = window.Portfolio.useRevealOnScroll;
     const useActiveSection = window.Portfolio.useActiveSection;
     const Icon = window.Portfolio.Icon;
+    const [imgIdx, setImgIdx] = useState(0);
 
     const [activeSection] = useActiveSection(SECTIONS);
     const [query, setQuery] = useState("");
@@ -31,7 +32,7 @@ window.Portfolio.App = function () {
         });
     }, [projects, query, tag]);
 
-    useRevealOnScroll(filtered);
+    // useRevealOnScroll(filtered);
 
     function scrollTo(id) {
         const el = document.getElementById(id);
@@ -136,7 +137,7 @@ window.Portfolio.App = function () {
                 <section id="home" className="hero">
                     <div className="container">
                         <div className="heroGrid">
-                            <div className="reveal">
+                            <div>
                                 <h2 className="headline">Developing reliable<br />systems & solutions.</h2>
                                 <p className="subhead">
                                     Full Stack Developer focused on structure and performance.
@@ -195,12 +196,12 @@ window.Portfolio.App = function () {
                                 </div>
                             </div>
 
-                            <div className="reveal" style={{ transitionDelay: '100ms' }}>
+                            <div style={{ transitionDelay: '100ms' }}>
                                 <div className="metricGrid">
                                     <h4>What I offer</h4>
                                     <div className="metric">
                                         <h3>Full-Stack Web Apps</h3>
-                                        <p>End-to-end development with React, Next.js, ASP.NET Core, and Django, from UI to deployment.</p>
+                                        <p>Development with React, Next.js, ASP.NET Core, and Django, from UI to deployment. Relational databases and NoSQL databases. (MongoDB, PostgreSQL, MySQL, SQL Server)</p>
                                     </div>
                                     <div className="metric">
                                         <h3>Backend & Database Engineering</h3>
@@ -222,7 +223,7 @@ window.Portfolio.App = function () {
 
                 <section id="projects" className="section">
                     <div className="container">
-                        <div className="sectionHead reveal">
+                        <div className="sectionHead">
                             <div>
                                 <h2 className="sectionTitle">Projects</h2>
                                 <p className="sectionDesc"></p>
@@ -237,7 +238,7 @@ window.Portfolio.App = function () {
 
                         <div className="grid grid2">
                             {filtered.map((p) => (
-                                <article key={p.title} className="projectCard reveal">
+                                <article key={p.title} className="projectCard">
                                     <div className="projectTop">
                                         <h3>{p.title}</h3>
                                     </div>
@@ -249,7 +250,7 @@ window.Portfolio.App = function () {
                                         {p.links.map((l, idx) => (
                                             l.type === "link"
                                                 ? <a key={idx} className="linkBtn primary" href={l.href} target="_blank"><Icon kind="link" /> {l.label}</a>
-                                                : <button key={idx} className="linkBtn" onClick={() => setSelected(p)}><Icon kind="eye" /> {l.label}</button>
+                                                : <button key={idx} className="linkBtn" onClick={() => { setSelected(p); setImgIdx(0); }}><Icon kind="eye" /> {l.label}</button>
                                         ))}
                                     </div>
                                 </article>
@@ -260,23 +261,23 @@ window.Portfolio.App = function () {
 
                 <section id="certs" className="section">
                     <div className="container">
-                        <div className="sectionHead reveal">
+                        <div className="sectionHead">
                             <div>
                                 <h2 className="sectionTitle">Certifications</h2>
                             </div>
                         </div>
                         <div className="grid grid3">
-                            <div className="projectCard reveal" >
+                            <div className="projectCard" >
                                 <h3>IBM AI Engineering</h3>
                                 <p>Python, ML workflows, and model training fundamentals.</p>
                                 <div className="badges"><span className="badge blue">Python</span></div>
                             </div>
-                            <div className="projectCard reveal">
+                            <div className="projectCard">
                                 <h3>Google UX Design</h3>
                                 <p>Wireframing, prototyping, and user research logic.</p>
                                 <div className="badges"><span className="badge blue">Figma</span></div>
                             </div>
-                            <div className="projectCard reveal">
+                            <div className="projectCard">
                                 <h3>Google IT Support</h3>
                                 <p>Networking basics and system troubleshooting.</p>
                                 <div className="badges"><span className="badge blue">Systems</span></div>
@@ -287,10 +288,10 @@ window.Portfolio.App = function () {
 
                 <section id="resume" className="section">
                     <div className="container">
-                        <div className="sectionHead reveal">
+                        <div className="sectionHead">
                             <h2 className="sectionTitle">Reach Out Today!</h2>
                         </div>
-                        <div className="projectCard reveal" style={{ textAlign: 'center', padding: '60px 20px' }}>
+                        <div className="projectCard" style={{ textAlign: 'center', padding: '60px 20px' }}>
                             <h3 style={{ fontSize: 24, marginBottom: 10 }}>Ready to build.</h3>
                             <p style={{ maxWidth: 400, margin: "0 auto 30px" }}>
                                 Available for internships and freelance projects.
@@ -309,7 +310,7 @@ window.Portfolio.App = function () {
                             </div>
                         </div>
 
-                        <div className="resumeSection reveal">
+                        <div className="resumeSection">
                             <div className="resumeHeader">
                                 <div>
                                     <h3 id="resumeTitle" className="resumeTitle">Resume</h3>
@@ -324,7 +325,7 @@ window.Portfolio.App = function () {
                             </div>
                             <div className="resumeEmbed">
                                 <iframe
-                                    src="assets/resume/IfradHos_Resume.pdf"
+                                    src="assets/resume/IfradHosResume.pdf"
                                     title="Ifrad Hossain — Résumé"
                                     className="resumeFrame"
                                 />
@@ -341,13 +342,43 @@ window.Portfolio.App = function () {
 
             {selected && (
                 <div className="modalOverlay" onClick={() => setSelected(null)}>
-                    <div className="modal reveal on" onClick={(e) => e.stopPropagation()}>
+                    <div className="modal" onClick={(e) => e.stopPropagation()}>
                         <div className="modalTop">
                             <h3>{selected.title}</h3>
                             <button className="modalClose" onClick={() => setSelected(null)}>✕</button>
                         </div>
                         <div className="modalBody">
                             <p>{selected.details}</p>
+                            {selected.preview && (
+                                <div className="modalPreview">
+                                    <iframe
+                                        src={selected.preview}
+                                        title={`${selected.title} Preview`}
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    />
+                                </div>
+                            )}
+                            {selected.images && (
+                                <div className="modalPreview slideshow">
+                                    <img 
+                                        src={selected.images[imgIdx]} 
+                                        alt={`${selected.title} screenshot ${imgIdx + 1}`}
+                                        className="slideshowImg"
+                                    />
+                                    {selected.images.length > 1 && (
+                                        <div className="slideshowNav">
+                                            <button className="ssBtn" onClick={() => setImgIdx((imgIdx - 1 + selected.images.length) % selected.images.length)}>←</button>
+                                            <div className="ssDots">
+                                                {selected.images.map((_, i) => (
+                                                    <span key={i} className={`ssDot ${i === imgIdx ? 'active' : ''}`} onClick={() => setImgIdx(i)} />
+                                                ))}
+                                            </div>
+                                            <button className="ssBtn" onClick={() => setImgIdx((imgIdx + 1) % selected.images.length)}>→</button>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                             <div className="projectLinks" style={{ marginTop: 24 }}>
                                 {selected.links.filter(l => l.type === "link").map((l, idx) => (
                                     <a key={idx} className="linkBtn primary" href={l.href} target="_blank" rel="noopener noreferrer">

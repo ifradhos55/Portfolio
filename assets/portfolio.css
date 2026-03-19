@@ -559,17 +559,98 @@ button {
     line-height: 1.6;
 }
 
-/* --- Reveal Animation --- */
-.reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+.modalPreview {
+    margin: 24px 0;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
 }
 
-.reveal.on {
-    opacity: 1;
-    transform: translateY(0);
+.modalPreview iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
+
+.slideshow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+
+.slideshowImg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.slideshowNav {
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    pointer-events: none;
+}
+
+.ssBtn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    pointer-events: auto;
+    transition: all 0.2s;
+    z-index: 5;
+}
+
+.ssBtn:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #000;
+}
+
+.ssDots {
+    display: flex;
+    gap: 6px;
+    pointer-events: auto;
+}
+
+.ssDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ssDot:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.ssDot.active {
+    background: var(--orange);
+    transform: scale(1.2);
+}
+
+/* --- Reveal Animation Removed --- */
 
 /* --- Resume Embed --- */
 .resumeSection {

@@ -8,6 +8,13 @@ window.Portfolio.PROJECTS = [
         details: "Ozark is a comprehensive Learning Management System built for reliability and scale. It features a robust backend powered by ASP.NET and C#, with PostgreSQL for data persistence and Azure for cloud hosting. The frontend offers a premium user experience styled with Tailwind CSS. Includes a student hub, assignment submission systems, and grade tracking.\n(Note: When idle for 20 minutes or longer, the server will deactivate. Upon detecting user activity it will restart within 30-60 seconds.)\n",
         tags: ["ASP .NET", "C#", "Tailwind CSS", "PostgreSQL", "Azure", "MVC"],
         primaryTag: "ASP .NET",
+        images: [
+            "assets/img/ozark/SC 2026-03-18 at 11.56.02 PM.jpg",
+            "assets/img/ozark/SC 2026-03-18 at 11.56.16 PM.jpg",
+            "assets/img/ozark/SC 2026-03-18 at 11.56.40 PM.jpg",
+            "assets/img/ozark/SC 2026-03-19 at 12.09.21 AM.jpg",
+            "assets/img/ozark/SC 2026-03-19 at 12.17.40 AM.jpg"
+        ],
         links: [
             { label: "Visit Ozark", type: "link", href: "https://ozarklms-crakb2dqdqb4crfn.canadacentral-01.azurewebsites.net" },
             { label: "Source Code", type: "link", href: "https://github.com/Luistello87/OzarkLMS/tree/master/OzarkLMS" },
@@ -21,6 +28,7 @@ window.Portfolio.PROJECTS = [
         details: "A high-performance WebGL simulation featuring real-time orbital physics, procedural texture generation via Canvas API, and a massive 100,000-particle spiral galaxy view. Built with Three.js for immersive 3D rendering directly in the browser.",
         tags: ["Three.js", "WebGL", "JavaScript"],
         primaryTag: "Three.js",
+        preview: "https://cosmicfusionsimulator-six.vercel.app",
         links: [
             { label: "Visit Cosmic Fusion", type: "link", href: "https://cosmicfusionsimulator-six.vercel.app" },
             { label: "Source Code", type: "link", href: "https://github.com/ifradhos55/Cosmic-Fusion" },
