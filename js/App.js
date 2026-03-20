@@ -48,8 +48,8 @@ function Resume({ data }) {
                             {proj.links && (
                                 <div className="resume-item-links" style={{ display: 'flex', gap: 12, marginTop: 4 }}>
                                     {proj.links.map((link, j) => (
-                                        <a key={j} href={link.href} target="_blank" className="resume-link" style={{ 
-                                            fontSize: 11, color: 'var(--orange)', display: 'flex', alignItems: 'center', gap: 4, opacity: 0.9 
+                                        <a key={j} href={link.href} target="_blank" className="resume-link" style={{
+                                            fontSize: 11, color: 'var(--orange)', display: 'flex', alignItems: 'center', gap: 4, opacity: 0.9
                                         }}>
                                             <window.Portfolio.Icon kind="link" /> {link.label}
                                         </a>
@@ -97,35 +97,35 @@ function rewriteHoverStyles() {
             try {
                 // Only process local stylesheets to avoid CORS issues
                 if (sheet.href && !sheet.href.includes(window.location.origin)) return;
-                
+
                 const rules = Array.from(sheet.cssRules || []);
                 rules.forEach(rule => {
                     if (rule.selectorText && rule.selectorText.includes(':hover')) {
                         const newSelector = rule.selectorText.replace(/:hover/g, '.air-hover');
                         try {
                             sheet.insertRule(`${newSelector} { ${rule.style.cssText} }`, sheet.cssRules.length);
-                        } catch (e) {}
+                        } catch (e) { }
                     }
                 });
-            } catch (e) {}
+            } catch (e) { }
         });
-    } catch (e) {}
+    } catch (e) { }
 }
 const ThumbUpIcon = () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/>
+        <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" />
     </svg>
 );
 
 const ThumbDownIcon = () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.37-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/>
+        <path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.37-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z" />
     </svg>
 );
 
 function AirScroll({ active, onError }) {
-    const [state, setState] = useState({ 
-        isScrollingUp: false, 
+    const [state, setState] = useState({
+        isScrollingUp: false,
         isScrollingDown: false,
         showInstructions: false
     });
@@ -342,7 +342,7 @@ window.Portfolio.App = function () {
                             ))}
                         </nav>
                         <div className={`ctaRow ${scrollDir === 'down' ? 'hidden' : ''}`}>
-                            <button 
+                            <button
                                 className={`btn btn-air-cursor ${airScrollActive ? 'active' : ''}`}
                                 onClick={() => setAirScrollActive(!airScrollActive)}
                                 title="Air-Scroll: Hand-gesture scrolling"
@@ -496,10 +496,10 @@ window.Portfolio.App = function () {
                                     <div className="cert-overlay">
                                         <div style={{ textAlign: 'center', padding: '0 20px' }}>
                                             <h3 style={{ fontSize: 18, marginBottom: 12, color: 'white' }}>{c.name}</h3>
-                                            <a 
-                                                href={c.verifyUrl} 
-                                                target="_blank" 
-                                                rel="noopener noreferrer" 
+                                            <a
+                                                href={c.verifyUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
                                                 className="cert-verify-btn"
                                             >
                                                 Verify Cert
@@ -526,7 +526,7 @@ window.Portfolio.App = function () {
                                 Download PDF
                             </a>
                         </div>
-                        
+
                         <Resume data={window.Portfolio.RESUME_DATA} />
                     </div>
 
@@ -608,7 +608,7 @@ window.Portfolio.App = function () {
             )}
             {airScrollError && (
                 <div style={{
-                    position: 'fixed', bottom: 20, right: 20, background: '#811', color: 'white', 
+                    position: 'fixed', bottom: 20, right: 20, background: '#811', color: 'white',
                     padding: '12px 20px', borderRadius: 8, zIndex: 10001, fontSize: 13, border: '1px solid #f44'
                 }}>
                     {airScrollError}

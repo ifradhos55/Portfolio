@@ -67,9 +67,9 @@ window.Portfolio.HandTracker = class extends EventTarget {
             const { HandLandmarker, FilesetResolver } = window.MediaPipe;
             const vision = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.17/wasm");
             this.handLandmarker = await HandLandmarker.createFromOptions(vision, {
-                baseOptions: { 
-                    modelAssetPath: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task", 
-                    delegate: "GPU" 
+                baseOptions: {
+                    modelAssetPath: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task",
+                    delegate: "GPU"
                 },
                 runningMode: "VIDEO",
                 numHands: 1
@@ -128,23 +128,16 @@ window.Portfolio.HandTracker = class extends EventTarget {
         }
         const landmarks = results.landmarks[0];
 
-        // 1. High-Sensitivity Air-Scroll (Reliable)
-        // - Effortless Triggers: Thumbs up and down will now trigger easily even with a relaxed hand position.
-        // - Classic 3-Finger Fist: Scrolling uses the standard Index, Middle, and Ring finger curl, which is the most natural for most users.
-        // - Detection Summary:
-        //     - Thumb Up (Tip above joints) = Scroll Up.
-        //     - Thumb Down (Tip below joints) = Scroll Down.
-        //     - Any Finger Extended = Stop Scrolling instantly.
-
-        // Check if Index, Middle, and Ring fingers are curled (fist gesture)
+        // 1. Simple Finger Curl detection (Index, Middle, Ring)
         // TIP.y > PIP.y means finger is curled downwards towards palm
         const isIndexCurled = landmarks[8].y > landmarks[6].y;
         const isMiddleCurled = landmarks[12].y > landmarks[10].y;
         const isRingCurled = landmarks[16].y > landmarks[14].y;
         
+        // Use 3 fingers for the most reliable trigger (Index, Middle, Ring)
         const fingersCurled = isIndexCurled && isMiddleCurled && isRingCurled;
 
-        // High-Sensitivity Thumb Up/Down
+        // 2. High-Sensitivity Thumb Up/Down
         // Scroll Up: Thumb Tip (4) is above Thumb MCP (2)
         // Scroll Down: Thumb Tip (4) is below Thumb MCP (2)
         const thumbTip = landmarks[4];
