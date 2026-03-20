@@ -18,10 +18,15 @@
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+    <script type="module">
+        import { HandLandmarker, FilesetResolver } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.17/vision_bundle.mjs";
+        window.MediaPipe = { HandLandmarker, FilesetResolver };
+    </script>
 
     <script type="text/babel" src="js/constants.js"></script>
     <script type="text/babel" src="js/hooks.js"></script>
     <script type="text/babel" src="js/components.js"></script>
+    <script type="text/babel" src="js/handTracker.js"></script>
     <script type="text/babel" src="js/App.js"></script>
     <script type="text/babel" src="js/main.js"></script>
 </body>

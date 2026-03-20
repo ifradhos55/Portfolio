@@ -57,7 +57,7 @@ window.Portfolio.PROJECTS = [
     }
 ];
 
-window.Portfolio.SECTIONS = ["home", "projects", "certs", "Contact"];
+window.Portfolio.SECTIONS = ["home", "projects", "certs", "resume"];
 
 window.Portfolio.RESUME_DATA = {
     summary: "Full stack software developer with hands-on experience building and maintaining web applications across modern frontend and backend stacks. Proficient in JavaScript, TypeScript, React, Java, C#, and Python with practical experience developing RESTful services using Spring Boot and ASP.NET MVC. Strong foundation in SQL and PostgreSQL, version control with Git, and Linux-based development workflows, complemented by DevOps practices including CI/CD to deliver reliable production-ready software.",

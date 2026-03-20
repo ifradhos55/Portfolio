@@ -80,7 +80,6 @@ button {
     z-index: 100;
     background: transparent;
     border-bottom: 1px solid var(--border);
-    overflow: hidden;
 }
 
 .topbar-art {
@@ -186,7 +185,7 @@ button {
 }
 
 .nav-resume-pill {
-    display: none; /* Hidden on desktop */
+    display: none; /* Removed from JSX */
 }
 
 .ctaRow {
@@ -194,6 +193,7 @@ button {
     gap: 12px;
     align-items: center;
     flex-shrink: 0;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* --- Buttons --- */
@@ -844,12 +844,7 @@ button {
     }
 
     .nav-resume-pill {
-        display: block;
-        background: var(--text-main);
-        color: #000 !important;
-        font-weight: 700;
-        margin-left: 8px; /* Standard gap instead of auto */
-        box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+        display: none;
     }
 
     .navlinks::-webkit-scrollbar {
@@ -857,7 +852,21 @@ button {
     }
 
     .ctaRow {
-        display: none;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin: 5px auto 10px;
+        transition: opacity 0.4s ease, max-height 0.4s ease, margin 0.4s ease, transform 0.4s ease;
+        max-height: 100px;
+        overflow: hidden;
+    }
+
+    .ctaRow.hidden {
+        opacity: 0;
+        pointer-events: none;
+        max-height: 0;
+        margin: 0 auto;
+        transform: scale(0.96); /* Subtle depth change instead of slide */
     }
 
     .hero {
@@ -1123,3 +1132,156 @@ button {
 }
 
 
+
+/* --- Air-Cursor Accessibility Tool --- */
+
+
+.air-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    margin-left: -16px;
+    margin-top: -16px;
+    z-index: 10000;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s var(--ease);
+}
+
+/* Air-Scroll Instructions */
+.air-scroll-instructions {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(5, 5, 5, 0.95);
+    color: white;
+    padding: 24px 32px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 68, 0, 0.4);
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    z-index: 10002;
+    pointer-events: none;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 68, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    line-height: 1.4;
+    font-family: 'Inter', sans-serif;
+}
+
+.air-scroll-indicator {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: rgba(5, 5, 5, 0.8);
+    color: #FF4400;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    border: 1px solid rgba(255, 68, 0, 0.3);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.air-scroll-indicator.up, .air-scroll-indicator.down {
+    opacity: 1;
+    bottom: 40px;
+}
+
+.air-cursor-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--orange);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 68, 0, 0.4);
+    transition: all 0.2s var(--ease);
+}
+
+.air-cursor-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
+}
+
+/* Pinch State */
+.air-cursor.pinching .air-cursor-ring {
+    transform: scale(0.6);
+    border-width: 4px;
+    background: rgba(255, 68, 0, 0.2);
+}
+
+/* Scroll Gestures */
+.air-cursor-icon {
+    position: absolute;
+    font-size: 20px;
+    color: var(--orange);
+    opacity: 0;
+    transform: translateY(0);
+    transition: all 0.2s var(--ease);
+}
+
+.air-cursor.scrolling-up .air-cursor-ring,
+.air-cursor.scrolling-down .air-cursor-ring {
+    opacity: 0.3;
+}
+
+.air-cursor.scrolling-up .air-cursor-icon-up,
+.air-cursor.scrolling-down .air-cursor-icon-down {
+    opacity: 1;
+    transform: translateY(-5px);
+}
+
+.air-cursor.scrolling-down .air-cursor-icon-down {
+    transform: translateY(5px);
+}
+
+/* Toggle Button Styling */
+.btn-air-cursor {
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 68, 0, 0.05);
+    border-color: rgba(255, 68, 0, 0.2);
+    color: var(--orange);
+}
+
+.btn-air-cursor.active {
+    background: var(--orange);
+    color: #000;
+    border-color: var(--orange);
+    box-shadow: 0 0 15px rgba(255, 68, 0, 0.3);
+}
+
+.btn-air-cursor .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    margin-right: 4px;
+    display: inline-block;
+}
+
+@keyframes pulse-dot {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.btn-air-cursor.active .status-dot {
+    animation: pulse-dot 1.5s infinite;
+}

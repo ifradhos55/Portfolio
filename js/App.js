@@ -1,4 +1,4 @@
-const { useMemo, useState } = React;
+const { useMemo, useState, useEffect, useRef } = React;
 
 window.Portfolio = window.Portfolio || {};
 
@@ -90,6 +90,112 @@ function Resume({ data }) {
         </div>
     );
 }
+function rewriteHoverStyles() {
+    try {
+        const styleSheets = Array.from(document.styleSheets);
+        styleSheets.forEach(sheet => {
+            try {
+                // Only process local stylesheets to avoid CORS issues
+                if (sheet.href && !sheet.href.includes(window.location.origin)) return;
+                
+                const rules = Array.from(sheet.cssRules || []);
+                rules.forEach(rule => {
+                    if (rule.selectorText && rule.selectorText.includes(':hover')) {
+                        const newSelector = rule.selectorText.replace(/:hover/g, '.air-hover');
+                        try {
+                            sheet.insertRule(`${newSelector} { ${rule.style.cssText} }`, sheet.cssRules.length);
+                        } catch (e) {}
+                    }
+                });
+            } catch (e) {}
+        });
+    } catch (e) {}
+}
+const ThumbUpIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/>
+    </svg>
+);
+
+const ThumbDownIcon = () => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.37-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/>
+    </svg>
+);
+
+function AirScroll({ active, onError }) {
+    const [state, setState] = useState({ 
+        isScrollingUp: false, 
+        isScrollingDown: false,
+        showInstructions: false
+    });
+    const trackerRef = useRef(null);
+
+    useEffect(() => {
+        if (!active) {
+            if (trackerRef.current) trackerRef.current.stop();
+            setState({ isScrollingUp: false, isScrollingDown: false, showInstructions: false });
+            return;
+        }
+
+        setState(s => ({ ...s, showInstructions: true }));
+        const timer = setTimeout(() => setState(s => ({ ...s, showInstructions: false })), 5000);
+
+        if (!trackerRef.current) {
+            trackerRef.current = new window.Portfolio.HandTracker();
+            
+            trackerRef.current.addEventListener('tracking-update', (e) => {
+                const { isScrollingUp, isScrollingDown } = e.detail;
+                setState(s => ({ ...s, isScrollingUp, isScrollingDown }));
+
+                const SCROLL_SPEED = 20;
+                if (isScrollingUp) window.scrollBy({ top: -SCROLL_SPEED, behavior: 'auto' });
+                if (isScrollingDown) window.scrollBy({ top: SCROLL_SPEED, behavior: 'auto' });
+            });
+
+            trackerRef.current.addEventListener('tracking-error', (e) => onError(e.detail.message));
+        }
+
+        trackerRef.current.start();
+        return () => {
+            if (trackerRef.current) trackerRef.current.stop();
+            clearTimeout(timer);
+        };
+    }, [active]);
+
+    if (!active) return null;
+
+    return (
+        <>
+            {state.showInstructions && (
+                <div className="air-scroll-instructions">
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 15, marginBottom: 12 }}>
+                        <ThumbUpIcon /> <span>to Scroll Up</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 15, marginBottom: 16 }}>
+                        <ThumbDownIcon /> <span>to Scroll Down</span>
+                    </div>
+                    <div style={{ fontSize: '0.85rem', opacity: 0.8, borderTop: '1px solid rgba(255, 68, 0, 0.2)', paddingTop: 12 }}>
+                        Release any finger(s) --&gt; stop scrolling
+                    </div>
+                </div>
+            )}
+            <div className={`air-scroll-indicator ${state.isScrollingUp ? 'up' : ''} ${state.isScrollingDown ? 'down' : ''}`}>
+                {state.isScrollingUp && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <ThumbUpIcon /> <span>SCROLLING UP</span>
+                    </div>
+                )}
+                {state.isScrollingDown && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <ThumbDownIcon /> <span>SCROLLING DOWN</span>
+                    </div>
+                )}
+            </div>
+        </>
+    );
+}
+
 
 
 
@@ -106,6 +212,8 @@ window.Portfolio.App = function () {
     const [tag, setTag] = useState("All");
     const [selected, setSelected] = useState(null);
     const [imgIdx, setImgIdx] = useState(0);
+    const [airScrollActive, setAirScrollActive] = useState(false);
+    const [airScrollError, setAirScrollError] = useState(null);
 
     const projects = PROJECTS;
 
@@ -125,6 +233,23 @@ window.Portfolio.App = function () {
     }, [projects, query, tag]);
 
     // useRevealOnScroll(filtered);
+
+    const [scrollDir, setScrollDir] = useState("up");
+
+    useEffect(() => {
+        let lastY = window.scrollY;
+        const handleScroll = () => {
+            const currY = window.scrollY;
+            if (currY > lastY && currY > 50) {
+                setScrollDir("down");
+            } else if (currY < lastY) {
+                setScrollDir("up");
+            }
+            lastY = currY;
+        };
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     function scrollTo(id) {
         const el = document.getElementById(id);
@@ -210,23 +335,23 @@ window.Portfolio.App = function () {
                             <h1>IFRAD ISTIAQUE HOSSAIN</h1>
                         </div>
                         <nav className="navlinks">
-                            {SECTIONS.filter(s => s !== "Contact").map(s => (
-                                <a key={s} className="pill" href={`#${s}`} onClick={(e) => { e.preventDefault(); scrollTo(s); }}>
-                                    {s.charAt(0).toUpperCase() + s.slice(1)}
-                                </a>
-                            ))}
-                            <a className="pill nav-resume-pill" href="#resumeTitle" onClick={(e) => { e.preventDefault(); scrollTo("resumeTitle"); }}>
-                                Resume
-                            </a>
-                            {SECTIONS.filter(s => s === "Contact").map(s => (
+                            {SECTIONS.map(s => (
                                 <a key={s} className="pill" href={`#${s}`} onClick={(e) => { e.preventDefault(); scrollTo(s); }}>
                                     {s.charAt(0).toUpperCase() + s.slice(1)}
                                 </a>
                             ))}
                         </nav>
-                        <div className="ctaRow">
-                            <a className="btn btnPrimary" href="#resumeTitle" onClick={(e) => { e.preventDefault(); scrollTo("resumeTitle"); }}>
-                                Resume
+                        <div className={`ctaRow ${scrollDir === 'down' ? 'hidden' : ''}`}>
+                            <button 
+                                className={`btn btn-air-cursor ${airScrollActive ? 'active' : ''}`}
+                                onClick={() => setAirScrollActive(!airScrollActive)}
+                                title="Air-Scroll: Hand-gesture scrolling"
+                            >
+                                <span className="status-dot" />
+                                Air-Scroll
+                            </button>
+                            <a className="btn btnPrimary" href="#Contact" onClick={(e) => { e.preventDefault(); scrollTo("Contact"); }}>
+                                Contact
                             </a>
                         </div>
                     </div>
@@ -388,7 +513,7 @@ window.Portfolio.App = function () {
                 </section>
 
                 <div className="container">
-                    <div className="resumeSection">
+                    <div id="resume" className="resumeSection">
                         <div className="resumeHeader">
                             <div>
                                 <h3 id="resumeTitle" className="resumeTitle">Resume</h3>
@@ -481,6 +606,17 @@ window.Portfolio.App = function () {
                     </div>
                 </div>
             )}
+            {airScrollError && (
+                <div style={{
+                    position: 'fixed', bottom: 20, right: 20, background: '#811', color: 'white', 
+                    padding: '12px 20px', borderRadius: 8, zIndex: 10001, fontSize: 13, border: '1px solid #f44'
+                }}>
+                    {airScrollError}
+                    <button style={{ marginLeft: 15, color: 'white', opacity: 0.7 }} onClick={() => setAirScrollError(null)}>✕</button>
+                </div>
+            )}
+
+            <AirScroll active={airScrollActive} onError={(msg) => { setAirScrollError(msg); setAirScrollActive(false); }} />
         </>
     );
 }
