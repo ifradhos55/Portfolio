@@ -133,7 +133,7 @@ window.Portfolio.HandTracker = class extends EventTarget {
         const isIndexCurled = landmarks[8].y > landmarks[6].y;
         const isMiddleCurled = landmarks[12].y > landmarks[10].y;
         const isRingCurled = landmarks[16].y > landmarks[14].y;
-        
+
         // Use 3 fingers for the most reliable trigger (Index, Middle, Ring)
         const fingersCurled = isIndexCurled && isMiddleCurled && isRingCurled;
 
@@ -142,7 +142,7 @@ window.Portfolio.HandTracker = class extends EventTarget {
         // Scroll Down: Thumb Tip (4) is below Thumb MCP (2)
         const thumbTip = landmarks[4];
         const thumbMcp = landmarks[2];
-        
+
         const isScrollingUp = fingersCurled && (thumbTip.y < thumbMcp.y - 0.02);
         const isScrollingDown = fingersCurled && (thumbTip.y > thumbMcp.y + 0.02);
 

@@ -45,13 +45,20 @@ window.Portfolio.PROJECTS = [
         ]
     },
     {
-        title: "Markain",
-        highlight: "Integrated institutional Business Management System for comprehensive organizational operations.",
-        details: "Markain is a full-featured Business Management System built with ASP.NET Core MVC and Entity Framework Core. It includes a real-time operational dashboard, a Training Hub for delivering institutional modules, a built-in Applicant Tracking System (ATS) for managing recruitment cycles, a Collaboration Hub for secure team communication, a PDF Toolbox for document processing, and a public-facing Careers Portal for talent acquisition.",
-        tags: ["ASP .NET", "C#", "PostgreSQL", "Tailwind CSS", "Entity Framework"],
-        primaryTag: "ASP .NET",
+        title: "Mac Scraper",
+        highlight: "High-performance file management tool using the native Spotlight engine.",
+        details: "Mac Scraper is a high-performance system utility for macOS built with Python. It leverages the native Spotlight engine to find any file type across the entire system instantly. Users can filter results by file size and age to quickly identify and manage data. The application also provides raw system information, offering a transparent view of memory and battery health.",
+        tags: ["Python", "macOS", "Spotlight API", "Tkinter"],
+        primaryTag: "Python",
+        images: [
+            "assets/img/MacScraper/pic1.jpg",
+            "assets/img/MacScraper/pic2.jpg",
+            "assets/img/MacScraper/pic3.jpg"
+        ],
         links: [
-            { label: "Source Code", type: "link", href: "https://github.com/ifradhos55/Markain" },
+            { label: "Source Code", type: "link", href: "https://github.com/ifradhos55/Mac-Scraper" },
+            { label: "Overview", type: "link", href: "assets/Documentations/MacScraper_Overview.pdf" },
+            { label: "Implementation", type: "link", href: "assets/Documentations/MacScraper_Implementation_v2.pdf" },
             { label: "View Details", type: "modal" }
         ]
     }
@@ -104,11 +111,11 @@ window.Portfolio.RESUME_DATA = {
             ]
         },
         {
-            title: "Markain",
-            tech: "ASP.NET Core MVC, Entity Framework Core, C#, PostgreSQL, Tailwind CSS",
-            details: "Built an Institutional Business Management System with a real-time operational dashboard, Training Hub, and Applicant Tracking System.",
+            title: "Mac Scraper",
+            tech: "Python, Tkinter, Spotlight API, macOS",
+            details: "Built a high-performance file management tool utilizing the macOS Spotlight engine for instant system-wide file searching and filtering.",
             links: [
-                { label: "Source Code", href: "https://github.com/ifradhos55/Markain" }
+                { label: "Source Code", href: "https://github.com/ifradhos55/Mac-Scraper" }
             ]
         },
         {
