@@ -562,6 +562,36 @@ window.Portfolio.App = function () {
                         </div>
                         <div className="modalBody">
                             <p>{selected.details}</p>
+                            {selected.presentationImages && (
+                                <div className="modalPreview" style={{ 
+                                    display: 'flex', 
+                                    gap: '16px', 
+                                    overflowX: 'auto', 
+                                    paddingBottom: '16px', 
+                                    scrollSnapType: 'x mandatory',
+                                    scrollBehavior: 'smooth',
+                                    marginBottom: '20px'
+                                }}>
+                                    {selected.presentationImages.map((src, i) => (
+                                        <img 
+                                            key={i} 
+                                            src={src} 
+                                            alt={`Slide ${i + 1}`} 
+                                            style={{ 
+                                                width: '85%',
+                                                height: 'auto',
+                                                maxHeight: '340px',
+                                                borderRadius: '8px',
+                                                scrollSnapAlign: 'start',
+                                                objectFit: 'contain',
+                                                backgroundColor: '#fff',
+                                                flexShrink: 0,
+                                                border: '1px solid rgba(255, 255, 255, 0.1)'
+                                            }} 
+                                        />
+                                    ))}
+                                </div>
+                            )}
                             {selected.preview && (
                                 <div className="modalPreview">
                                     <iframe

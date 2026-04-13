@@ -14,7 +14,21 @@ window.Portfolio.PROJECTS = [
             "assets/img/ozark/SC 2026-03-19 at 12.09.21 AM.jpg",
             "assets/img/ozark/SC 2026-03-19 at 12.17.40 AM.jpg"
         ],
+        presentationImages: [
+            "assets/img/ozark/presentation/page_0.jpg",
+            "assets/img/ozark/presentation/page_1.jpg",
+            "assets/img/ozark/presentation/page_2.jpg",
+            "assets/img/ozark/presentation/page_3.jpg",
+            "assets/img/ozark/presentation/page_4.jpg",
+            "assets/img/ozark/presentation/page_5.jpg",
+            "assets/img/ozark/presentation/page_6.jpg",
+            "assets/img/ozark/presentation/page_7.jpg",
+            "assets/img/ozark/presentation/page_8.jpg",
+            "assets/img/ozark/presentation/page_9.jpg"
+        ],
         links: [
+            { label: "Overview", type: "link", href: "assets/Documentations/OzarkLMS_Final_Report (1).pdf" },
+            { label: "Testing", type: "link", href: "assets/Documentations/OzarkLMS_Testing_Documentation (1).pdf" },
             { label: "Visit Ozark", type: "link", href: "https://ozarklms-crakb2dqdqb4crfn.canadacentral-01.azurewebsites.net" },
             { label: "Source Code", type: "link", href: "https://github.com/Luistello87/OzarkLMS/tree/master/OzarkLMS" },
             { label: "View Details", type: "modal" }
