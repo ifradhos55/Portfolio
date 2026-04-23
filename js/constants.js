@@ -78,7 +78,7 @@ window.Portfolio.PROJECTS = [
     }
 ];
 
-window.Portfolio.SECTIONS = ["home", "projects", "certs", "resume"];
+window.Portfolio.SECTIONS = ["home", "projects", "resume", "education"];
 
 window.Portfolio.RESUME_DATA = {
     summary: "Full stack software developer with hands-on experience building and maintaining web applications across modern frontend and backend stacks. Proficient in JavaScript, TypeScript, React, Java, C#, and Python with practical experience developing RESTful services using Spring Boot and ASP.NET MVC. Strong foundation in SQL and PostgreSQL, version control with Git, and Linux-based development workflows, complemented by DevOps practices including CI/CD to deliver reliable production-ready software.",
@@ -86,7 +86,7 @@ window.Portfolio.RESUME_DATA = {
         {
             school: "George Brown Polytechnic",
             degree: "Associates in Computer Programming",
-            period: "Expected April 2026",
+            period: "April 2026",
             location: "Toronto, ON",
             details: "Relevant Coursework: Data Structures and Algorithms, Object-Oriented Software Development, Server-Side Web Development, Database Systems, Linux Systems, and Bash Scripting."
         }
