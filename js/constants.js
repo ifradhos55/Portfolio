@@ -78,7 +78,7 @@ window.Portfolio.PROJECTS = [
     }
 ];
 
-window.Portfolio.SECTIONS = ["home", "projects", "resume", "education"];
+window.Portfolio.SECTIONS = ["home", "resume", "projects", "education"];
 
 window.Portfolio.RESUME_DATA = {
     summary: "Full stack software developer with hands-on experience building and maintaining web applications across modern frontend and backend stacks. Proficient in JavaScript, TypeScript, React, Java, C#, and Python with practical experience developing RESTful services using Spring Boot and ASP.NET MVC. Strong foundation in SQL and PostgreSQL, version control with Git, and Linux-based development workflows, complemented by DevOps practices including CI/CD to deliver reliable production-ready software.",
@@ -93,25 +93,24 @@ window.Portfolio.RESUME_DATA = {
     ],
     experience: [
         {
-            company: "Sky Group Residence",
-            role: "Coordinator",
-            period: "Jan 2025 – Dec 2025",
+            company: "Wild Rice Canada",
+            role: "Web Developer",
+            period: "May 2026 – Present",
             location: "Toronto, ON",
-            details: "Coordinated with prospective tenants, provided walkthroughs, and addressed inquiries. Scheduled and conducted property showings and acted as a primary point of contact for operational needs."
+            details: [
+                "Designed and launched a responsive B2B/B2C platform, streamlining the purchasing pipeline for retail, wholesale, and international export orders.",
+                "Developed clean, accessible UI components to strengthen brand identity and drive customer engagement."
+            ]
         },
         {
-            company: "Cineplex VIP Theatres",
-            role: "VIP Cast Member",
-            period: "Dec 2023 – Dec 2024",
-            location: "Saskatoon, SK",
-            details: "Delivered high-quality customer service in a fast-paced VIP environment. Performed opening/closing duties and maintained facility cleanliness and safety standards."
-        },
-        {
-            company: "Access Research",
-            role: "Market Research Interviewer",
-            period: "Nov 2022 – Jun 2023",
-            location: "Saskatoon, SK",
-            details: "Conducted structured surveys for public and private organizations. Followed strict data collection protocols to ensure accuracy and confidentiality."
+            company: "Awash Variety",
+            role: "E-Commerce Developer",
+            period: "Mar 2026 – Present",
+            location: "Toronto, ON",
+            details: [
+                "Engineered and deployed a scalable e-commerce catalog, organizing hundreds of specialty products into a highly navigable digital storefront.",
+                "Optimized digital inventory layout and categorization systems to improve user experience and product discoverability."
+            ]
         }
     ],
     projects: [
@@ -149,6 +148,11 @@ window.Portfolio.RESUME_DATA = {
         "Tools & Cloud": ["Azure", "AWS", "Git", "GitHub", "CI/CD", "Linux", "Bash Scripting"]
     },
     certifications: [
+        {
+            name: "AWS Certified AI Practitioner",
+            issuer: "Amazon Web Services",
+            verifyUrl: "https://www.credly.com/badges/9cfafafb-5b9d-46e9-9d66-c0d5d18f60ac/linked_in?t=ticgfj"
+        },
         { 
             name: "IBM AI Engineering", 
             issuer: "IBM", 

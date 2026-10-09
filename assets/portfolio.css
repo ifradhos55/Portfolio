@@ -1408,3 +1408,51 @@ button {
         gap: 40px;
     }
 }
+
+/* Text certificate cards keep credentials visible without a certificate image. */
+.cert-card-text {
+    background: linear-gradient(135deg, #232f3e, #101820);
+}
+
+.cert-text-content {
+    padding: 28px;
+}
+
+.cert-issuer {
+    color: #ff9900;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+}
+
+.cert-card-text .cert-overlay {
+    opacity: 1;
+    background: transparent;
+    backdrop-filter: none;
+}
+
+.cert-card-text .cert-verify-btn {
+    display: inline-block;
+    transform: none;
+}
+
+.cert-card:focus-within .cert-overlay {
+    opacity: 1;
+}
+
+.cert-card:focus-within .cert-verify-btn {
+    transform: none;
+}
+
+.resume-experience-details {
+    padding-left: 18px;
+}
+
+.resume-experience-details li + li {
+    margin-top: 8px;
+}
+
+.resume-item-header {
+    flex-wrap: wrap;
+    gap: 6px 12px;
+}

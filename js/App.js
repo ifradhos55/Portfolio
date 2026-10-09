@@ -19,7 +19,9 @@ function Resume({ data }) {
                                 <span className="resume-item-period">{exp.period}</span>
                             </div>
                             <div className="resume-item-org">{exp.company} • {exp.location}</div>
-                            <p className="resume-item-details">{exp.details}</p>
+                            <ul className="resume-item-details resume-experience-details">
+                                {exp.details.map((detail, j) => <li key={j}>{detail}</li>)}
+                            </ul>
                         </div>
                     ))}
 
@@ -417,26 +419,53 @@ window.Portfolio.App = function () {
                                 <div className="metricGrid">
                                     <h4>What I offer</h4>
                                     <div className="metric">
-                                        <h3>Full-Stack Web Apps</h3>
-                                        <p>Development with React, Next.js, ASP.NET Core, and Django, from UI to deployment. Relational databases and NoSQL databases. (MongoDB, PostgreSQL, MySQL, SQL Server)</p>
+                                        <h3>Generative AI & LLM Engineering</h3>
+                                        <p>AI agents, retrieval-augmented generation (RAG), and enterprise search with LLM integration, prompt orchestration, embeddings, vector databases, and model evaluation.</p>
                                     </div>
                                     <div className="metric">
-                                        <h3>Backend & Database Engineering</h3>
-                                        <p>Scalable APIs and data layers using Node.js, Express.js, PostgreSQL, and SQL Server.</p>
+                                        <h3>Backend & Distributed Systems</h3>
+                                        <p>Scalable REST APIs and services using Python, FastAPI, C#, and ASP.NET/.NET, with service architecture and asynchronous processing.</p>
                                     </div>
                                     <div className="metric">
-                                        <h3>Desktop & Enterprise Software</h3>
-                                        <p>Production-grade applications with Java, JavaFX, Spring Boot, and C#.</p>
+                                        <h3>Cloud & Platform Engineering</h3>
+                                        <p>Cloud-native services on AWS and Microsoft Azure, with containers, CI/CD pipelines, observability, and a focus on production reliability.</p>
                                     </div>
                                     <div className="metric">
-                                        <h3>AI & Data Pipelines</h3>
-                                        <p>Model training and integration using TensorFlow, PyTorch, and MediaPipe for real-world use cases.</p>
+                                        <h3>Full-Stack Engineering</h3>
+                                        <p>Enterprise web applications with TypeScript, JavaScript, React, and ASP.NET MVC, connecting responsive interfaces to dependable backend services.</p>
+                                    </div>
+                                    <div className="metric">
+                                        <h3>Data & Persistence</h3>
+                                        <p>Data modeling, optimized pipelines, and enterprise data integration using PostgreSQL, SQL Server, and vector databases.</p>
+                                    </div>
+                                    <div className="metric">
+                                        <h3>AI Frameworks & Tooling</h3>
+                                        <p>Agent workflows and AI applications built with LangChain, LangGraph, and OpenAI APIs, supported by evaluation practices and application architecture.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+
+                <div className="container">
+                    <div id="resume" className="resumeSection">
+                        <div className="resumeHeader">
+                            <div>
+                                <h3 id="resumeTitle" className="resumeTitle">Resume</h3>
+                                <p className="resumeDesc">
+                                    An interactive look at my professional journey.
+                                </p>
+                            </div>
+                            <a className="btn btnPrimary" href="assets/resume/IfradIstiaque.pdf" download="IfradIstiaque.pdf" style={{ cursor: 'pointer' }}>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
+                                Download PDF
+                            </a>
+                        </div>
+
+                        <Resume data={window.Portfolio.RESUME_DATA} />
+                    </div>
+                </div>
 
                 <section id="projects" className="section">
                     <div className="container">
@@ -477,23 +506,6 @@ window.Portfolio.App = function () {
                 </section>
 
                 <div className="container">
-                    <div id="resume" className="resumeSection">
-                        <div className="resumeHeader">
-                            <div>
-                                <h3 id="resumeTitle" className="resumeTitle">Resume</h3>
-                                <p className="resumeDesc">
-                                    A interactive look at my professional journey.
-                                </p>
-                            </div>
-                            <a className="btn btnPrimary" href="assets/resume/IfradIstiaque.pdf" target="_blank" rel="noopener noreferrer" style={{ cursor: 'pointer' }}>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
-                                Download PDF
-                            </a>
-                        </div>
-
-                        <Resume data={window.Portfolio.RESUME_DATA} />
-                    </div>
-
                     <section id="education" className="section" style={{ marginTop: 80 }}>
                         <div className="edu-header-container">
                             <h2 className="sectionTitle" style={{ textTransform: 'uppercase', marginBottom: 0 }}>Education & Acknowledgements</h2>
@@ -542,8 +554,14 @@ window.Portfolio.App = function () {
                         </h3>
                         <div className="cert-grid">
                             {window.Portfolio.RESUME_DATA.certifications.map((c, idx) => (
-                                <div key={idx} className="cert-card">
-                                    <img src={c.image} alt={c.name} className="cert-img" />
+                                <div key={idx} className={`cert-card${c.image ? '' : ' cert-card-text'}`}>
+                                    {c.image ? (
+                                        <img src={c.image} alt={c.name} className="cert-img" />
+                                    ) : (
+                                        <div className="cert-text-content">
+                                            <span className="cert-issuer">{c.issuer}</span>
+                                        </div>
+                                    )}
                                     <div className="cert-overlay">
                                         <div style={{ textAlign: 'center', padding: '0 20px' }}>
                                             <h3 style={{ fontSize: 18, marginBottom: 12, color: 'white' }}>{c.name}</h3>
