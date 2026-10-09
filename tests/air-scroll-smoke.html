@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Air-Scroll worker smoke test</title></head>
+<body>
+<h1>Air-Scroll worker smoke test</h1>
+<p>Loads the real model and processes synthetic blank frames. Does not access the camera.</p>
+<pre id="result">Loading worker…</pre>
+<script>
+const result = document.getElementById('result');
+const worker = new Worker('../js/handTrackingWorker.js');
+const started = performance.now();
+let count = 0, frameStarted, firstInference;
+const latencies = [];
+const timeout = setTimeout(() => finish('FAIL: Worker timed out.'), 45000);
+function finish(message) {
+    clearTimeout(timeout);
+    worker.terminate();
+    result.textContent = message;
+}
+async function frame() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 640; canvas.height = 480;
+    canvas.getContext('2d').fillRect(0, 0, 640, 480);
+    const bitmap = await createImageBitmap(canvas);
+    frameStarted = performance.now();
+    worker.postMessage({ type: 'frame', frame: bitmap, timestamp: frameStarted }, [bitmap]);
+}
+worker.onerror = event => finish('FAIL: ' + event.message);
+worker.onmessage = ({ data }) => {
+    if (data.type === 'error') return finish('FAIL: ' + data.message);
+    if (data.type === 'ready') {
+        result.textContent = `Worker ready in ${Math.round(performance.now() - started)} ms. Running 12 frames…`;
+        return frame();
+    }
+    if (data.type === 'result') {
+        if (data.landmarks) return finish('FAIL: Unexpected hand on a blank frame.');
+        const latency = performance.now() - frameStarted;
+        if (count === 0) firstInference = latency; else latencies.push(latency);
+        if (++count < 12) return frame();
+        const mean = latencies.reduce((a, b) => a + b, 0) / latencies.length;
+        finish(`PASS: Model initialized in a worker; all 12 frames processed without a false gesture.\nFirst inference: ${firstInference.toFixed(1)} ms.\nMean warm blank-frame round trip: ${mean.toFixed(1)} ms.\nCamera/real-hand latency must be measured separately.`);
+    }
+};
+worker.postMessage({ type: 'init' });
+</script>
+</body>
+</html>

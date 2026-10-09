@@ -73,3 +73,13 @@ Full stack software developer with hands-on experience building and maintaining 
 - **IBM AI Enterprise Workflow** | [Verify](https://www.coursera.org/account/accomplishments/specialization/certificate/3IWCRQQCG8X3)
 - **Google UX Design** | [Verify](https://www.coursera.org/account/accomplishments/specialization/certificate/T4YGQEUTVT80)
 - **Google IT Support** | [Verify](https://www.coursera.org/account/accomplishments/professional-cert/certificate/EJBEM2OYWJER)
+
+### Local development and Air-Scroll checks
+
+Serve the repository with `python3 -m http.server 8000 --bind 127.0.0.1` and open `http://127.0.0.1:8000/`.
+
+Air-Scroll processes camera frames locally in a Web Worker. It requests up to 60 fps, uses one in-flight frame to avoid a queue, and scrolls at a time-based 650 px/s. Curl all four fingers and point an extended thumb up or down; opening a finger stops scrolling. Two consecutive matching detections engage a gesture, with looser hold thresholds to reduce flicker. Input older than 180 ms cannot continue scrolling. Switching away from the tab releases the camera.
+
+- Run deterministic gesture, scroll timing, and camera lifecycle checks: `node --test tests/air-scroll.test.cjs`.
+- Open `/tests/air-scroll-smoke.html` on the local server to load the real model and process blank frames without camera access. Its timings are synthetic worker round trips, not real hand or camera-to-scroll latency.
+- For a live-camera check, enable Air-Scroll and test both hands, thumbs up/down, moderate hand rotation, opening each finger, moving out of frame, toggling off during startup, and switching tabs. Check in typical and dim lighting. Actual gesture accuracy and latency depend on the camera, hardware, and lighting.

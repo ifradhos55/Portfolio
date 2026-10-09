@@ -1175,33 +1175,6 @@ button {
     font-family: 'Inter', sans-serif;
 }
 
-.air-scroll-indicator {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10000;
-    padding: 10px 20px;
-    border-radius: 30px;
-    background: rgba(5, 5, 5, 0.8);
-    color: #FF4400;
-    font-size: 0.85rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    border: 1px solid rgba(255, 68, 0, 0.3);
-    opacity: 0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.air-scroll-indicator.up, .air-scroll-indicator.down {
-    opacity: 1;
-    bottom: 40px;
-}
-
 .air-cursor-ring {
     position: absolute;
     width: 100%;
@@ -1455,4 +1428,25 @@ button {
 .resume-item-header {
     flex-wrap: wrap;
     gap: 6px 12px;
+}
+
+.air-scroll-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    max-width: calc(100vw - 32px);
+    padding: 10px 16px;
+    border: 1px solid var(--orange);
+    border-radius: 8px;
+    background: rgba(10, 10, 10, 0.94);
+    color: var(--text-main);
+    font-size: 13px;
+    text-align: center;
+    pointer-events: none;
 }

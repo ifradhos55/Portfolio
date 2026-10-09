@@ -117,43 +117,49 @@ const ThumbDownIcon = () => (
     </svg>
 );
 
-function AirScroll({ active, onError }) {
-    const [state, setState] = useState({
-        isScrollingUp: false,
-        isScrollingDown: false,
-        showInstructions: false
-    });
-    const trackerRef = useRef(null);
+function AirScroll({ active, onError, onStop }) {
+    const [state, setState] = useState({ direction: 0, hasHand: false, status: 'loading', showInstructions: false });
+    const handlers = useRef({ onError, onStop });
+    handlers.current = { onError, onStop };
 
     useEffect(() => {
-        if (!active) {
-            if (trackerRef.current) trackerRef.current.stop();
-            setState({ isScrollingUp: false, isScrollingDown: false, showInstructions: false });
-            return;
-        }
+        if (!active) return;
+        const tracker = new window.Portfolio.HandTracker();
+        const motion = new window.Portfolio.AirScrollMotion();
+        let animation;
+        let instructionsTimer;
+        setState({ direction: 0, hasHand: false, status: 'loading', showInstructions: false });
 
-        setState(s => ({ ...s, showInstructions: true }));
-        const timer = setTimeout(() => setState(s => ({ ...s, showInstructions: false })), 5000);
+        tracker.addEventListener('tracking-update', ({ detail }) => {
+            motion.update(detail.direction, detail.capturedAt);
+            // Avoid rerendering React on every camera frame.
+            setState(s => s.direction === detail.direction && s.hasHand === detail.hasHand
+                ? s : { ...s, direction: detail.direction, hasHand: detail.hasHand });
+        });
+        tracker.addEventListener('tracking-status', ({ detail }) => {
+            setState(s => ({ ...s, status: detail.status, showInstructions: detail.status === 'ready' }));
+            if (detail.status === 'ready') {
+                instructionsTimer = setTimeout(() => setState(s => ({ ...s, showInstructions: false })), 5000);
+            }
+        });
+        tracker.addEventListener('tracking-error', ({ detail }) => handlers.current.onError(detail.message));
+        tracker.addEventListener('tracking-stopped', () => handlers.current.onStop());
 
-        if (!trackerRef.current) {
-            trackerRef.current = new window.Portfolio.HandTracker();
-            
-            trackerRef.current.addEventListener('tracking-update', (e) => {
-                const { isScrollingUp, isScrollingDown } = e.detail;
-                setState(s => ({ ...s, isScrollingUp, isScrollingDown }));
-
-                const SCROLL_SPEED = 20;
-                if (isScrollingUp) window.scrollBy({ top: -SCROLL_SPEED, behavior: 'auto' });
-                if (isScrollingDown) window.scrollBy({ top: SCROLL_SPEED, behavior: 'auto' });
-            });
-
-            trackerRef.current.addEventListener('tracking-error', (e) => onError(e.detail.message));
-        }
-
-        trackerRef.current.start();
+        const scroll = now => {
+            const delta = motion.step(now);
+            if (delta) window.scrollBy({ top: delta, behavior: 'instant' });
+            if (now - motion.updatedAt > 180) {
+                setState(s => s.direction === 0 && !s.hasHand ? s : { ...s, direction: 0, hasHand: false });
+            }
+            animation = requestAnimationFrame(scroll);
+        };
+        animation = requestAnimationFrame(scroll);
+        tracker.start();
         return () => {
-            if (trackerRef.current) trackerRef.current.stop();
-            clearTimeout(timer);
+            cancelAnimationFrame(animation);
+            clearTimeout(instructionsTimer);
+            tracker.stop();
+            motion.reset();
         };
     }, [active]);
 
@@ -170,21 +176,16 @@ function AirScroll({ active, onError }) {
                         <ThumbDownIcon /> <span>to Scroll Down</span>
                     </div>
                     <div style={{ fontSize: '0.85rem', opacity: 0.8, borderTop: '1px solid rgba(255, 68, 0, 0.2)', paddingTop: 12 }}>
-                        Release any finger(s) --&gt; stop scrolling
+                        Curl all four fingers; point your thumb up or down. Open your hand to stop.
                     </div>
                 </div>
             )}
-            <div className={`air-scroll-indicator ${state.isScrollingUp ? 'up' : ''} ${state.isScrollingDown ? 'down' : ''}`}>
-                {state.isScrollingUp && (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <ThumbUpIcon /> <span>SCROLLING UP</span>
-                    </div>
-                )}
-                {state.isScrollingDown && (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <ThumbDownIcon /> <span>SCROLLING DOWN</span>
-                    </div>
-                )}
+            <div className="air-scroll-status" role="status" aria-live="polite">
+                {state.status === 'loading' ? 'Starting camera and hand tracking…'
+                    : !state.hasHand ? 'Show one hand to the camera'
+                    : state.direction === 0 ? 'Ready — curl your fingers and point your thumb'
+                    : state.direction < 0 ? <><ThumbUpIcon /><span>Scrolling up</span></>
+                    : <><ThumbDownIcon /><span>Scrolling down</span></>}
             </div>
         </>
     );
@@ -339,6 +340,7 @@ window.Portfolio.App = function () {
                             <button
                                 className={`btn btn-air-cursor ${airScrollActive ? 'active' : ''}`}
                                 onClick={() => setAirScrollActive(!airScrollActive)}
+                                aria-pressed={airScrollActive}
                                 title="Air-Scroll: Hand-gesture scrolling"
                             >
                                 <span className="status-dot" />
@@ -704,7 +706,7 @@ window.Portfolio.App = function () {
                 </div>
             )}
 
-            <AirScroll active={airScrollActive} onError={(msg) => { setAirScrollError(msg); setAirScrollActive(false); }} />
+            <AirScroll active={airScrollActive} onStop={() => setAirScrollActive(false)} onError={(msg) => { setAirScrollError(msg); setAirScrollActive(false); }} />
         </>
     );
 }
